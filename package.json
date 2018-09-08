@@ -4,8 +4,13 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "cookie-parser": "^1.4.3",
+    "cookie-session": "^2.0.0-beta.3",
     "express": "^4.16.3",
+    "materialize-css": "^1.0.0-rc.2",
     "mongoose": "^5.2.13",
+    "passport": "^0.4.0",
+    "passport-google-oauth": "^1.0.0",
     "password-generator": "^2.2.0"
   },
   "scripts": {
