@@ -15,6 +15,12 @@ class App extends Component {
     this.addTask = this.addTask.bind(this);
   }
 
+  scrollToBottom = () => {
+    this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+  }
+  scrollToTop = () => {
+    this.messagesTop.scrollIntoView({ behavior: "smooth" });
+  }
   handleChange(e) {
     const { name, value } = e.target;
     this.setState({
@@ -99,16 +105,20 @@ class App extends Component {
   componentDidMount() {
     this.fetchTasks();
   }
-
+  
   fetchTasks() {
     fetch('/api/tasks')
       .then(res => res.json())
       .then(data => {
-        this.setState({tasks: data});
+     
+        this.setState({tasks: data });
+        
+        this.state.tasks.sort((a, b) => parseFloat(a._id) - parseFloat(b._id));
+        this.scrollToBottom();
         //console.log(this.state.tasks);
       });
   }
-
+  
   render() {
     
     return (
@@ -127,7 +137,7 @@ class App extends Component {
         
         
         <div className="row">
-            <div className="col s6 offset-s3">
+            <div className="col s6 ">
               
              {
                
@@ -149,16 +159,26 @@ class App extends Component {
                       <button onClick={() => this.editTask(task._id)} className="waves-effect waves-light btn-small" style={{margin: '4px'}}>
                           <i className="material-icons">edit</i>
                       </button>
+                      <button onClick={() => this.scrollToTop()} className="waves-effect waves-light btn-small right" style={{margin: '4px'}}>
+                          <i className="material-icons">add</i>
+                      </button>
                   </div>
+                    <div style={{ float:"left", clear: "both" }}
+                    ref={(el) => { this.messagesEnd = el; }}>
+                    </div>
               </div>
-             
+            
           )
         })
           }
             </div>
-         </div>
-          <div className="row">
-            <div className="col s6 offset-s3">
+     
+            <div className="col s6 ">
+            <div style={{ float:"left", clear: "both" }}
+            
+                    ref={(el) => { this.messagesTop = el; }}>
+                    
+                    </div>
               <div className="card">
                 <div className="card-content">
                   <form onSubmit={this.addTask}>
@@ -179,8 +199,8 @@ class App extends Component {
                     
                     </div>
 
-                    <button type="submit" className="btn waves-effect waves-light">
-                    <i className="material-icons right">send</i> Send
+                    <button type="submit" className="btn waves-effect waves-light right">
+                    <i className="material-icons left">send</i> 
                     </button>
                   </form>
                 </div>
