@@ -114,7 +114,7 @@ class App extends Component {
         this.setState({tasks: data });
         
         this.state.tasks.sort((a, b) => parseFloat(a._id) - parseFloat(b._id));
-        this.scrollToBottom();
+        this.scrollToTop();
         //console.log(this.state.tasks);
       });
   }
@@ -137,13 +137,13 @@ class App extends Component {
         
         
         <div className="row">
-            <div className="col s6 ">
+            <div className="col s10 ">
               
              {
                
                this.state.tasks.map(task => {
                 return (
-                 
+ 
             <div className="card"  key={task._id}>
                   <div className="card-image">
                       <img src={task.img} alt="images/sample-1.jpg"></img>
@@ -163,22 +163,22 @@ class App extends Component {
                           <i className="material-icons">add</i>
                       </button>
                   </div>
-                    <div style={{ float:"left", clear: "both" }}
-                    ref={(el) => { this.messagesEnd = el; }}>
-                    </div>
-              </div>
+                  </div>
+              
             
           )
         })
           }
             </div>
-     
-            <div className="col s6 ">
-            <div style={{ float:"left", clear: "both" }}
+            </div>
+          <div className="row">
+          <div style={{ float:"left", clear: "both" }}
             
-                    ref={(el) => { this.messagesTop = el; }}>
-                    
-                    </div>
+            ref={(el) => { this.messagesTop = el; }}>
+            
+            </div>
+            <div className="col s10 ">
+
               <div className="card">
                 <div className="card-content">
                   <form onSubmit={this.addTask}>
@@ -204,12 +204,14 @@ class App extends Component {
                     </button>
                   </form>
                 </div>
+                </div>
+                    
               </div>
             </div>
           </div>
-
+        
         </div>
-        </div>
+       
 
      
     )
