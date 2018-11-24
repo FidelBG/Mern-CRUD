@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const URI = 'mongodb://dbuser:dbuser1@ds125362.mlab.com:25362/react-express';
+const URI = 'your mongodb connection string here';
 
 mongoose.connect(URI)
   .then(db => console.log('Db is connected'))
